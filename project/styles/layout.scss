@@ -1,14 +1,16 @@
 .wrap {
 	position: relative;
-	max-width: 48em;
+	max-width: 70em;
 	margin: 0 auto 2em auto;
 	padding: 4em 0 0 0;
 	@include clearfix;
+
+
 }
 
 .mother, .father {
 	position: relative;
-	width: 50%;
+	width: 30%;
 	float: left;
 	text-align: center;
 
@@ -18,3 +20,115 @@
 		width: 100%;
 	}
 }
+
+.offspring {
+	position: relative;
+	width: 75%;
+	height: 15em;
+	float: right;
+
+
+	.one {
+	position: relative;
+	border: 1px solid #333;
+	border-radius: 0.2em;
+	text-align: left;
+	background-color: #FEFCFF;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	position: relative;
+	width: 25%;
+	height: 12em;
+	float: left;
+	padding: 2em 0.5em 8em 0.5em;
+	@include border-box;
+	
+
+		.image {
+			height: 50%;
+			width: 50%;
+			float: right;
+		}
+	}
+	.two {
+	position: relative;
+	border: 1px solid #333;
+	border-radius: 0.2em;
+	text-align: left;
+	background-color: #FEFCFF;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	position: relative;
+	width: 25%;
+	height: 12em;
+	float: left;
+	padding: 2em 0.5em 8em 0.5em;
+	@include border-box;
+
+		.image {
+			height: 50%;
+			width: 50%;
+			float: right;
+		}
+	}
+	.three {
+	position: relative;
+	border: 1px solid #333;
+	border-radius: 0.2em;
+	text-align: left;
+	background-color: #FEFCFF;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	position: relative;
+	width: 25%;
+	height: 12em;
+	float: left;
+	padding: 2em 0.5em 8em 0.5em;
+	@include border-box;
+
+		.image {
+			height: 50%;
+			width: 50%;
+			float: right;
+		}
+	}
+	.four {
+	position: relative;
+	border: 1px solid #333;
+	border-radius: 0.2em;
+	text-align: left;
+	background-color: #FEFCFF;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	position: relative;
+	width: 25%;
+	height: 12em;
+	float: left;
+	padding: 2em 0.5em 8em 0.5em;
+	@include border-box;
+	
+		.image {
+			height: 50%;
+			width: 50%;
+			float: right;
+		}
+	}
+}
+
+.instructions {
+	position: relative;
+	width: 30%;
+	float: left;
+	text-align: center;
+	padding-right: 2em;
+	
+
+	.image {
+	height: 50%;
+	width: 50%;
+	float: left;
+	}
+
+	h2 {
+		position: absolute;
+		top: -2em;
+		width: 100%;
+	}
+}
+

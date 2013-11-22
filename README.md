@@ -13,6 +13,8 @@ This is the git repository for my first game. Typically with these sorts of chal
 
 The above sounds like I'm worming out of making a committment, which I'd hate to be the impression you take away from this. So let's set the goal here, with the above in mind:
 
-100 games in 6 months. Each game needs at least 100 unique visitors/plays.
+20 (good) games in 6 months. Each game needs at least 100 unique visitors/plays.
+
+*Edit* I've had a re-think and decided to reduce the target total, by quite a bit actually. Based on how long this first one is taking me, Trying to do 100 games in 60 days would be pretty tough (unless I made some crap ones). So I've reduced the number, with the idea that each game will be of a certain standard also.
 
 Boom. Done. See you on the other side.

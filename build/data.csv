@@ -1,0 +1,5 @@
+name,genotype1,genotype2,description,image,species,genotype1Type,genotype2Type,dominants,recessives
+peaparent1,B,B,"A massive, butch peaplant",peaplant,peaplant,dominant,dominant,2,0
+peaparent2,B,b,A quite big pea plant,peaplant,peaplant,dominant,recessive,1,1
+pearparent3,b,B,A quite big pea plant,peaplant,peaplant,recessive,dominant,1,1
+peaparent4,b,b,A teeny weeny pea plant,peaplant,peaplant,recessive,recessive,0,2
