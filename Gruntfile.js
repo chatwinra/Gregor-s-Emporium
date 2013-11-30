@@ -76,6 +76,10 @@ module.exports = function(grunt) {
 				url: 'https://docs.google.com/spreadsheet/pub?key=0AkdKGjqWcdvVdHRiWElRTEVua0pBQ2hQdUU1RjJZN3c&single=true&gid=1&output=csv',
 				dest: 'Project/src/objectives.csv'
 
+			},
+			csv3: {
+				url: 'https://docs.google.com/spreadsheet/pub?key=0AkdKGjqWcdvVdHRiWElRTEVua0pBQ2hQdUU1RjJZN3c&single=true&gid=2&output=csv',
+				dest: 'Project/src/data2.csv'
 			}
 		}
 

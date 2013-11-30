@@ -45,7 +45,7 @@ a {
 }
 
 @media -sass-debug-info{filename{}line{font-family:\0000342}}
-button {
+button, .mate {
   border: 1px solid #777777;
   background: #386BF5;
   color: white;
@@ -57,6 +57,11 @@ button {
 }
 
 @media -sass-debug-info{filename{}line{font-family:\0000353}}
+.mate {
+  display: inline;
+}
+
+@media -sass-debug-info{filename{}line{font-family:\0000359}}
 .info {
   background-color: #eee;
   border: 1px solid #aaa;
@@ -74,7 +79,7 @@ button {
   position: relative;
   max-width: 70em;
   margin: 0 auto 2em auto;
-  padding: 4em 0 0 0;
+  padding: 2em 0 0 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/_base\.scss}line{font-family:\0000324}}
 .wrap:before, .wrap:after {
@@ -93,27 +98,53 @@ button {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000311}}
+.parentName {
+  position: relative;
+  width: 73%;
+  float: right;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000318}}
+.offspringName {
+  position: relative;
+  width: 110%;
+  float: right;
+  text-align: center;
+  padding-right: 0.9em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000327}}
+.mateButtons {
+  position: relative;
+  width: 73%;
+  float: right;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000336}}
 .mother, .father {
   position: relative;
   width: 30%;
   float: left;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000342}}
 .mother h2, .father h2 {
   position: absolute;
   top: -2em;
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000349}}
 .offspring {
   position: relative;
-  width: 75%;
-  height: 15em;
+  width: 45%;
+  height: 30em;
   float: right;
+  padding: 2em 7em 0 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000357}}
 .offspring .one {
   position: relative;
   border: 1px solid #333;
@@ -122,21 +153,26 @@ button {
   background-color: #FEFCFF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   position: relative;
-  width: 25%;
+  width: 12em;
   height: 12em;
   float: left;
   padding: 2em 0.5em 8em 0.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0 0.5em 0.05em 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000373}}
 .offspring .one .image {
   height: 50%;
   width: 50%;
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000379}}
+.offspring .one.selected {
+  background-color: #85A2F9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000384}}
 .offspring .two {
   position: relative;
   border: 1px solid #333;
@@ -145,21 +181,26 @@ button {
   background-color: #FEFCFF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   position: relative;
-  width: 25%;
+  width: 12em;
   height: 12em;
   float: left;
   padding: 2em 0.5em 8em 0.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0 0 0.5em 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000366}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000399}}
 .offspring .two .image {
   height: 50%;
   width: 50%;
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003105}}
+.offspring .two.selected {
+  background-color: #85A2F9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003110}}
 .offspring .three {
   position: relative;
   border: 1px solid #333;
@@ -168,21 +209,26 @@ button {
   background-color: #FEFCFF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   position: relative;
-  width: 25%;
+  width: 12em;
   height: 12em;
   float: left;
   padding: 2em 0.5em 8em 0.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0 0.5em 0 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003125}}
 .offspring .three .image {
   height: 50%;
   width: 50%;
   float: right;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003131}}
+.offspring .three.selected {
+  background-color: #85A2F9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003136}}
 .offspring .four {
   position: relative;
   border: 1px solid #333;
@@ -191,7 +237,7 @@ button {
   background-color: #FEFCFF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   position: relative;
-  width: 25%;
+  width: 12em;
   height: 12em;
   float: left;
   padding: 2em 0.5em 8em 0.5em;
@@ -199,29 +245,33 @@ button {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003106}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003150}}
 .offspring .four .image {
   height: 50%;
   width: 50%;
   float: right;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003156}}
+.offspring .four.selected {
+  background-color: #85A2F9;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003114}}
-.instructions {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003163}}
+.instructions-info {
   position: relative;
   width: 30%;
   float: left;
   text-align: center;
   padding-right: 2em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003122}}
-.instructions .image {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003171}}
+.instructions-info .image {
   height: 50%;
   width: 50%;
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003128}}
-.instructions h2 {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/layout\.scss}line{font-family:\00003177}}
+.instructions-info h2 {
   position: absolute;
   top: -2em;
   width: 100%;
@@ -232,7 +282,7 @@ button {
   position: relative;
   border: 1px solid #333;
   border-radius: 0.2em;
-  width: 18em;
+  width: 12em;
   height: 12em;
   text-align: left;
   background-color: #FEFCFF;
@@ -240,11 +290,11 @@ button {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000311}}
 .mother .nature {
-  margin: 0 2em 0 auto;
+  margin: 0 1em 0 auto;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000315}}
 .father .nature {
-  margin: 0 auto 0 2em;
+  margin: 0 auto 0 0.7em;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000319}}
 .offspring .nature {
@@ -252,8 +302,22 @@ button {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000325}}
+.nature-intro {
+  position: relative;
+  float: right;
+  border: 1px solid #333;
+  border-radius: 0.2em;
+  width: 12em;
+  height: 12em;
+  text-align: left;
+  background-color: #FEFCFF;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  margin-right: 22%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000338}}
 .genotype-covered {
-  height: 100%;
+  height: 152%;
   background: url(assets/nature/peaplant.jpg) no-repeat 50% 50%;
   background-size: contain;
   opacity: 1;
@@ -263,14 +327,14 @@ button {
   -o-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000350}}
 .genotype-covered.faded {
   opacity: 0.5;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000355}}
 .genotype-uncovered {
-  height: 100%;
+  height: 152%;
   position: relative;
   padding: 2em 0.5em 8em 0.5em;
   -webkit-box-sizing: border-box;
@@ -278,7 +342,7 @@ button {
   box-sizing: border-box;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000362}}
 .name {
   position: absolute;
   width: 100%;
@@ -293,7 +357,7 @@ button {
   box-sizing: border-box;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000374}}
 .genes {
   position: absolute;
   width: 100%;
@@ -308,30 +372,29 @@ button {
   box-sizing: border-box;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000373}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000387}}
 .details {
   width: 100%;
   height: 100%;
   padding: 0.5em 0;
   border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000381}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000395}}
 .details p {
   font-size: 0.8em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003100}}
 .mugshot {
   height: 7.5em;
   float: right;
   margin: 0 0 0.5em 1em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003106}}
 .fields {
   position: absolute;
   width: 100%;
@@ -345,7 +408,7 @@ button {
   box-sizing: border-box;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003103}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003117}}
 .field {
   background-color: #c6d4f7;
   color: #3365e2;
@@ -355,17 +418,17 @@ button {
   margin: 0 0 0.5em 0;
   border-radius: 0.1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003112}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003126}}
 .field:last-child {
   margin: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003116}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003130}}
 .field.selected {
   background-color: #3365e2;
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003122}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/wildlife\.scss}line{font-family:\00003136}}
 .stat {
   float: right;
 }
@@ -458,17 +521,24 @@ footer p {
   top: 50%;
   left: 0;
   text-align: center;
+  z-index: 2;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/dialog\.scss}line{font-family:\000039}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/dialog\.scss}line{font-family:\0000311}}
 .dialog {
   margin: 0 auto;
   display: inline-block;
-  -webkit-transform: translate(0, -50%);
-  -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  -o-transform: translate(0, -50%);
-  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -95%);
+  -moz-transform: translate(0, -95%);
+  -ms-transform: translate(0, -95%);
+  -o-transform: translate(0, -95%);
+  transform: translate(0, -95%);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/dialog\.scss}line{font-family:\0000320}}
+.dialog .image {
+  height: 25%;
+  width: 25%;
+  float: left;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/richardchatwin\/Sites\/science-game-1\/Gregor\'s\%20Emporium\/Project\/styles\/whose-turn\.scss}line{font-family:\000031}}

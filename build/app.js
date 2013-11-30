@@ -8,6 +8,7 @@
 		* add new species in & objectives
 		* mechanism to vary species
 		* add multiple genotypes
+		* reset function (in case end up in a corner by mating wrong parents)
 		* keep track of score
 		* display score
 		* fix UI
@@ -23,21 +24,18 @@
 				template: template,
 				data: {
 					pending: true,
-					mateButton: false,
-					firstInstructions:true,
-					secondInstructions:false,
-					newMummy: false,
-					newMother: false,
-					mummyName: true,
-					newDaddy: false,
-					daddyName: true,
-					nextMate: false,
-					objectives: false
+					dialog: true
+
+
 				}
 			});
 
 			game.view.on({
 				start: game.start,
+
+				intro: function( event ){
+					game.view.set('instructions', true);
+				},
 
 				mate: function ( event) {
 					game.createOffspring( );
@@ -55,6 +53,10 @@
 					game.submitOffspring();
 				},
 
+				continuePlaying: function(event){
+					game.continuePlaying();
+				},
+
 				playAgain: function (event){ 
 					game.reset();
 					game.start();
@@ -63,14 +65,17 @@
 		},
 
 		reset: function () {
+			
 			game.view.set({
-				father: null,
-				mother: null,
-				offspring: null,
-				pending: true,
-				dialog: null,
-				objectives: false,
-				endgame: false
+					pending: true,
+					generation: false,
+					mateButton: false,
+					instructions:true,
+					secondInstructions:false,
+					nextMateInstructions: false,
+					objectives: false,
+					endgame: false,
+					dialog: false
 				
 			});
 		},
@@ -81,7 +86,7 @@
 			game.reset();
 			
 			// Clone csv data for organisms
-			var wildlife = game.wildlife;
+			var wildlife = game.level[2];
 			shuffle(wildlife);
 			var randomParent = wildlife[0];
 			var randomParent2 = wildlife[1];
@@ -91,17 +96,24 @@
 			game.father = randomParent2;
 			game.mother.name = 'Mummy';
 			game.father.name = 'Daddy';
+			game.generation = {
+
+					number: 0
+
+				};
+
 
 			//clone csv data for objectives
 			var objectives = game.objectives;
 			shuffle(objectives);
 			game.thisGameTarget = objectives[0];
 
+
 			// Unfade images and hide initial message
 			game.view.set({
 				pending: false,
 				mateButton: true,
-				firstInstructions: true,
+				'instructions': "Hi, I'm Gregor Mendel - Priest, Biologist and Geneticist. I like breeding things. Maybe you'll like it too? Why don't you have a go? Breed these pea plants for me.",
 				secondInstructions: false,
 				mother: game.mother,
 				father: game.father,
@@ -109,7 +121,8 @@
 				offspringTwo: false,
 				offspringThree: false,
 				offspringFour: false,
-				objectives: game.thisGameTarget
+				objectives: game.thisGameTarget,
+				gameMode: true
 				
 			});
 
@@ -149,10 +162,14 @@
 		game.allOffspring[2] = new offspring(game.mother.genotype2, game.father.genotype1, 'Offspring 3');
 		game.allOffspring[3] = new offspring(game.mother.genotype2, game.father.genotype2, 'Offspring 4');
 
-		game.allOffspring[0].set_description(game.wildlife);
-		game.allOffspring[1].set_description(game.wildlife);
-		game.allOffspring[2].set_description(game.wildlife);
-		game.allOffspring[3].set_description(game.wildlife);
+		game.allOffspring[0].set_description(game.level[2]);
+		game.allOffspring[1].set_description(game.level[2]);
+		game.allOffspring[2].set_description(game.level[2]);
+		game.allOffspring[3].set_description(game.level[2]);
+
+		game.generation.number +=1;
+		game.mother.name = 'Mummy';
+		game.father.name = 'Daddy';
 
 
 
@@ -160,21 +177,20 @@
 		game.view.set('offspringTwo', game.allOffspring[1]);
 		game.view.set('offspringThree', game.allOffspring[2]);
 		game.view.set('offspringFour', game.allOffspring[3]);
+
 		
 			
 			game.view.set({
 				pending: false,
+				selectedParent: null,
+				selectedParent2: null,
+				mother: game.mother,
+				father: game.father,
+				generation: game.generation,
 				firstInstructions: false,
 				secondInstructions: true,
-				mummyName: true,
-				newMummy: false,
-				daddyName: true,
-				newDaddy: false,
-				nextMate: false
-
-
-
-				
+				nextMateInstructions: true,
+				mateButton: false			
 			});
 		},
 
@@ -189,51 +205,46 @@
 		// Select offspring to become parents
 		selectParent: function ( offspringNumber ) {
 			
-			var d = parseInt(offspringNumber);
+
+
+			var newNumber = offspringNumber - 1 
 
 			if(game.gender === 'mother'){
-				if(game.father === game.allOffspring[d-1]){
+				if(game.father === game.allOffspring[newNumber]){
 					alert("You can't have the same offspring as both mother and father!")
 				} else {
-					game.mother = game.allOffspring[d-1];
+					game.mother = game.allOffspring[newNumber];
 					game.mother.name = 'New Mummy';
-
-
-					game.view.set('mother', game.allOffspring[d-1]);
-			
+					game.view.set('mother', game.allOffspring[newNumber]);
 					game.view.set({
+						'instructions.message': 'hello',
+						selectedParent: newNumber
 
-						newMummy: true,
-						mummyName: false
-
-						
 					});
-						}
-
+			
+				}
 
 			} else{
-				if(game.mother === game.allOffspring[d-1]){
-					alert('You can%t have the same offspring as both mother and father!')
+				if(game.mother === game.allOffspring[newNumber]){
+					alert("You can't have the same offspring as both mother and father!")
 				} else {
 
-			game.father = game.allOffspring[d-1];
+			game.father = game.allOffspring[newNumber];
 			game.father.name = 'New Daddy';
-			game.view.set('father', game.allOffspring[d-1]);
+			game.view.set('father', game.allOffspring[newNumber]);
 			game.view.set({
 
-				newDaddy: true,
-				daddyName: false
+						selectedParent2: newNumber
 
-				
-				});
+					});
 			}
 		}
 
 
-			if(game.view.data.daddyName === false && game.view.data.mummyName === false){
+			if(game.father.name === 'New Daddy' && game.mother.name === 'New Mummy'){
 				game.view.set({
 
-					nextMate: true
+					mateButton: true
 
 				});
 			}
@@ -254,48 +265,13 @@
 			
 
 			if (offspringDominants === game.thisGameTarget.dominantsTotals && offspringRecessives === game.thisGameTarget.recessivesTotals){
-				alert('You win!');
+				game.winGame();
 			} else {
-				alert('You lose :(');
+				game.continue();
 			}
 		
 		},
 
-		win: function () {
-			game.transferCards( true );
-
-			if ( !game.opponentHand.length ) {
-				game.winGame();
-			} else {
-				game.view.set( 'dialog.message', 'You win!' );
-			}
-
-			game.playerTurn = true;
-		},
-
-		lose: function () {
-			game.transferCards( false );
-			
-			if ( !game.playerHand.length ) {
-				game.loseGame();
-			} else {
-				game.view.set( 'dialog.message', 'You lose :(' );
-			}
-
-			game.playerTurn = false;
-		},
-
-		draw: function () {
-			game.centrePot.push( game.playerCard, game.opponentCard );
-
-			if ( !game.opponentHand.length ) {
-				game.winGame();
-			} else if ( !game.playerHand.length ) {
-				game.loseGame();
-			} else {
-				game.view.set( 'dialog.message', 'Draw!' );
-			}
-		},
 
 		winGame: function () {
 			// won the game
@@ -303,13 +279,21 @@
 				'dialog.message': 'You have won the game!',
 				endgame: true
 			});
+
+			game.counter = 2;
 		},
 
-		loseGame: function () {
-			// won the game
+		continue: function () {
+			// offspring aren't correct
 			game.view.set({
-				'dialog.message': 'You have lost the game :(',
-				endgame: true
+				'dialog.message': "Nope! Those offspring aren't right. Try Again",
+				wrong: true
+			});
+		},
+
+		continuePlaying: function(){
+			game.view.set({
+				dialog: false
 			});
 		},
 
@@ -328,11 +312,11 @@
 
 	window.game = game; // for the debugging
 	
-
+	game.level = [];
 	// load CSV data for both genotypes and objectives
 	get( 'data.csv', function ( csv ) {
 		var parser = new CSVParser( csv );
-		game.wildlife = parser.json();
+		game.level[1] = parser.json();
 
 		// TODO don't enable user to start game until we've got the data
 	});
@@ -341,6 +325,12 @@
 		var parser = new CSVParser ( csv );
 		game.objectives = parser.json();
 	});
+
+	get ('data2.csv', function( csv ) {
+		var parser = new CSVParser ( csv );
+		game.level[2] = parser.json();
+	});
+
 
 	// load template
 	get( 'template.html', function ( template ) {

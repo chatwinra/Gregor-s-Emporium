@@ -39,7 +39,7 @@ a {
 	text-decoration: none;
 }
 
-button {
+button, .mate {
 	border: 1px solid #777777;
 	background: #386BF5;
 	color: white;
@@ -49,6 +49,12 @@ button {
 	display: block;
 	margin: 0 auto 0.5em auto;
 }
+
+.mate {
+	display: inline;
+}
+
+
 
 .info {
 	background-color: #eee;
