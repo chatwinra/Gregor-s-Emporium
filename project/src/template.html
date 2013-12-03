@@ -21,7 +21,10 @@
 					<img class='image' src='assets/images/gregormendel.jpg'>
 					<p>
 					{{instructions}} 
-
+					{{#previousButton}}
+					<button class='buttonLeft' on-tap='displayInstructions:-1'>Previous</button>
+					{{/previousButton}}
+					<button class='buttonRight' on-tap='displayInstructions'>More Instructions</button>
 
 					</p>
 
@@ -29,8 +32,13 @@
 
 			{{#objectives}}
 			<h3>Objective</h3>
-			<p>{{objective}} {{dominants}} dominant offspring, {{recessives}} recessive offspring and {{partials}} mixed offspring</p>
+			<p>{{objective}} {{dominants}} offspring with {{dominantTrait}}, {{recessives}} offspring with {{recessiveTrait}} and {{partials}} offspring that show the dominant trait, but also have the recessive gene.</p>
+			{{#submitOffspring}}
 			<button on-tap='submitOffspring'>submit offspring!</button>
+			{{/submitOffspring}}
+			<h3>Score</h3>
+			{{score}}
+
 			{{/objectives}}
 
 				</div>
@@ -63,13 +71,6 @@
 
 
 
-			{{#pending}}
-				<div class='pending-wrapper'>
-					<div class='pending' on-tap='start'>
-					Click here to start the game!
-					</div>
-				</div>
-			{{/pending}}
 
 		</div>
 
@@ -120,7 +121,7 @@
 	<div on-tap='selectParent:1' class='one {{selectedParent == "0" || selectedParent2 == "0" ? "selected" : "" }}' >
 		<p class='name'>{{name}}</p>
 			<div class='details'>
-				<img class='mugshot'src='assets/nature/{{genotype1}}{{genotype2}}.jpg' >
+				<img class='mugshot'src='assets/nature/{{image}}'>
 				<p>{{description}}</p>
 			</div>
 		<p class='genes'>{{genotype1}} {{genotype2}} {{genotype3}} {{genotype4}}</p>
@@ -131,7 +132,7 @@
 		<div  on-tap='selectParent:2' class='two {{selectedParent == "1" || selectedParent2 == "1" ? "selected" : "" }}'>
 			<p class='name'>{{name}}</p>
 			<div class='details'>
-				<img class='mugshot'src='assets/nature/{{genotype1}}{{genotype2}}.jpg' >
+				<img class='mugshot'src='assets/nature/{{image}}'>
 				<p>{{description}}</p>
 			</div>
 			<p class='genes'>{{genotype1}} {{genotype2}} {{genotype3}} {{genotype4}}</p>
@@ -141,7 +142,7 @@
 		<div  on-tap='selectParent:3' class='three {{selectedParent == "2" || selectedParent2 == "2" ? "selected" : "" }}'>
 			<p class='name'>{{name}}</p>
 			<div class='details'>
-				<img class='mugshot'src='assets/nature/{{genotype1}}{{genotype2}}.jpg' >
+				<img class='mugshot'src='assets/nature/{{image}}'>
 				<p>{{description}}</p>
 			</div>
 			<p class='genes'>{{genotype1}} {{genotype2}} {{genotype3}} {{genotype4}}</p>
@@ -151,7 +152,7 @@
 		<div on-tap='selectParent:4' class='four {{selectedParent == "3" || selectedParent2 == "3" ? "selected" : "" }}'>
 			<p class='name'>{{name}}</p>
 			<div class='details'>
-				<img class='mugshot'src='assets/nature/{{genotype1}}{{genotype2}}.jpg' >
+				<img class='mugshot'src='assets/nature/{{image}}'>
 				<p>{{description}}</p>
 			</div>
 			<p class='genes'>{{genotype1}} {{genotype2}} {{genotype3}} {{genotype4}}</p>
@@ -174,35 +175,12 @@
 
 				Do we have a deal?
 
-				<button on-tap='intro'>Deal!</button>
+				<button on-tap='start'>Deal!</button>
 				{{/instructions}}
-				{{#instructions}}
-				Great! What we'll be doing is taking two parents with known traits, and mating them. Then we'll choose two of the offspring and mate <em> them </em>, and we'll keep doing that until we have the offspring we want. 
 
-				It's we stay aware of the traits each organism has, so we have an idea of what possible offspring they can produce. We'll use the notation I've made up. Check out the example below:
-
-	
-				<div class='nature-intro'>
-					<div class='genotype-uncovered'>
-						<p class='name'>A Peaplant</p>
-
-						<div class='details'>
-							<img class='mugshot' src='assets/nature/peaplant.jpg'>
-							<p>A big, butch peaplant</p>
-						</div>
-
-						<p class='genes'>B b</p>
-
-					</div>
-				</div>
-				{{/instructions}}
 
 				{{message}}
 
-				{{#gameMode}}
-					<button on-tap='continuePlaying'>Punnett Square</button>
-					<button on-tap='continuePlaying'>Random Offspring</button>
-				{{/gameMode}}
 				{{#wrong}}
 					<button on-tap='continuePlaying'>Continue Playing</button>
 				{{/wrong}}

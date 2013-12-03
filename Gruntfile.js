@@ -79,8 +79,17 @@ module.exports = function(grunt) {
 			},
 			csv3: {
 				url: 'https://docs.google.com/spreadsheet/pub?key=0AkdKGjqWcdvVdHRiWElRTEVua0pBQ2hQdUU1RjJZN3c&single=true&gid=2&output=csv',
-				dest: 'Project/src/data2.csv'
-			}
+				dest: 'Project/src/data2father.csv'
+			},
+
+			csv4: {
+				url: 'https://docs.google.com/spreadsheet/pub?key=0AkdKGjqWcdvVdHRiWElRTEVua0pBQ2hQdUU1RjJZN3c&single=true&gid=3&output=csv',
+				dest: 'Project/src/instructions.csv'
+			},		
+			csv5: {
+				url: 'https://docs.google.com/spreadsheet/pub?key=0AkdKGjqWcdvVdHRiWElRTEVua0pBQ2hQdUU1RjJZN3c&single=true&gid=4&output=csv',
+				dest: 'Project/src/data2mother.csv'
+			}				
 		}
 
 	});

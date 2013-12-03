@@ -38,6 +38,7 @@
 	width: 30%;
 	float: left;
 	text-align: center;
+	right: -1.8em;
 
 	h2 {
 		position: absolute;
@@ -164,14 +165,18 @@
 	position: relative;
 	width: 30%;
 	float: left;
-	text-align: center;
-	padding-right: 2em;
-	
+	text-align: left;
+	padding: 0.5em 0.1em 0 0.5em;
+	border: 1px solid #333;
+	background-color: #C6F5CD;
+	box-shadow: 0 0 3px rgba(0,0,0,0.2);
+	@include border-box;
 
 	.image {
 	height: 50%;
-	width: 50%;
+	width: 30%;
 	float: left;
+	padding: 0 0.5em 0 0;
 	}
 
 	h2 {
@@ -179,5 +184,37 @@
 		top: -2em;
 		width: 100%;
 	}
+
+	p {
+	margin: 0 0 1em 0;
+	padding-right: 0.5em;
+
+	}
+
+	buttonLeft {
+	border: 1px solid #777777;
+	background: #386BF5;
+	color: white;
+	padding: 0.3em;
+	cursor: pointer;
+	border-radius: 0.3em;
+	display: block;
+	margin: 0 auto 0.5em auto;
+	width: 40%;
+	float: left;
+	}
+	buttonRight {
+	border: 1px solid #777777;
+	background: #386BF5;
+	color: white;
+	padding: 0.3em;
+	cursor: pointer;
+	border-radius: 0.3em;
+	display: block;
+	margin: 0 auto 0.5em auto;
+	width: 40%;
+	float: right;
+	}
 }
+
 

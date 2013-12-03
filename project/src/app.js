@@ -5,12 +5,10 @@
 	/* TODO
 	
 		* fix images- diff images for diff genotypes
-		* add new species in & objectives
-		* mechanism to vary species
-		* add multiple genotypes
+		* update descriptions 
+		* fix bull/cow level- then call it quits!
 		* reset function (in case end up in a corner by mating wrong parents)
-		* keep track of score
-		* display score
+		* re-visit score mechanism- is it the best implementation?
 		* fix UI
 		* etc...
 
@@ -23,9 +21,8 @@
 				el: 'container',
 				template: template,
 				data: {
-					pending: true,
-					dialog: true
 
+					dialog: true,
 
 				}
 			});
@@ -33,12 +30,13 @@
 			game.view.on({
 				start: game.start,
 
-				intro: function( event ){
-					game.view.set('instructions', true);
-				},
 
 				mate: function ( event) {
 					game.createOffspring( );
+				},
+
+				displayInstructions: function (event, a){
+					game.displayInstructions( a );
 				},
 
 				selectParentGender: function(event, gender){
@@ -67,11 +65,10 @@
 		reset: function () {
 			
 			game.view.set({
-					pending: true,
+
 					generation: false,
 					mateButton: false,
 					instructions:true,
-					secondInstructions:false,
 					nextMateInstructions: false,
 					objectives: false,
 					endgame: false,
@@ -84,104 +81,165 @@
 		start: function () {
 
 			game.reset();
-			
-			// Clone csv data for organisms
-			var wildlife = game.level[2];
-			shuffle(wildlife);
-			var randomParent = wildlife[0];
-			var randomParent2 = wildlife[1];
 
-			// Assign 2 random parent creatures to start the game
-			game.mother = randomParent;
-			game.father = randomParent2;
+			//check what 'level' the player is on. At the start the counter will be undefined, but each time the player wins it goes up by 1
+			function levelSelect(){
+
+			if (typeof game.levelCounter === 'undefined'){
+				game.levelCounter = 1;
+			}
+		}
+
+			levelSelect();
+
+			// Clone csv data for organisms & Assign 2 random parent creatures to start the game
+			var wildlife = game.level[game.levelCounter];
+
+
+
+			shuffle(wildlife);
+
+			if(game.levelCounter === 4){
+				var wildlifeMothers = game.level[5];
+				shuffle(wildlifeMothers);
+				game.mother = wildlifeMothers[0];
+			} else {
+				game.mother = wildlife[0];
+			}
+
+
+			game.father = wildlife[1];
+
 			game.mother.name = 'Mummy';
 			game.father.name = 'Daddy';
-			game.generation = {
 
-					number: 0
+			//This tracks the generation of the offspring, goes up as the player mates more offspring
 
-				};
+			game.generation = {number: 0};
+
+			//track the score- it will start off as undefined but will increase as the player wins games (as same as the level counter)
+			function gameScore (){
+				if (typeof game.score === 'undefined'){
+					game.score = 0;
+				}
+			}
+			gameScore();
 
 
 			//clone csv data for objectives
 			var objectives = game.objectives;
 			shuffle(objectives);
 			game.thisGameTarget = objectives[0];
+			game.thisGameTarget.dominantTrait = game.mother.dominantTrait;
+			game.thisGameTarget.recessiveTrait = game.mother.recessiveTrait;
+
+			//clone csv data for instructions
+
+			var instructions = game.instructions
+
 
 
 			// Unfade images and hide initial message
 			game.view.set({
-				pending: false,
-				mateButton: true,
-				'instructions': "Hi, I'm Gregor Mendel - Priest, Biologist and Geneticist. I like breeding things. Maybe you'll like it too? Why don't you have a go? Breed these pea plants for me.",
-				secondInstructions: false,
-				mother: game.mother,
-				father: game.father,
 				offspringOne: false,
 				offspringTwo: false,
 				offspringThree: false,
 				offspringFour: false,
+				mateButton: true,
+				instructions: game.instructions[0].instructions,
+				secondInstructions: false,
+				mother: game.mother,
+				father: game.father,
 				objectives: game.thisGameTarget,
-				gameMode: true
+				score: game.score
 				
 			});
+
+		},
+
+		displayInstructions: function(){
+			game.number;
+
+			if(typeof game.number === 'undefined' || game.number >= game.instructions.length-1){
+				game.number = -1;
+			} else {
+
+			game.number ++;
+			}
+
+			game.view.set({
+				instructions: game.instructions[game.number].instructions
+			});
+
 
 		},
 
 		//mates the two parents to create 4 offspring- start with object constructor
 		createOffspring: function () {
 
-		function offspring(gene1, gene2, name ) {
+		function Offspring(gene1, gene2, gene3, gene4, name ) {
 	
 			this.name = name;
 			this.description = 'Unknown';
-			this.image = gene1+gene2;
+			this.image = 'Unknown';
 			this.genotype1 = gene1;
 			this.genotype2 = gene2;
+			this.genotype3 = gene3;
+			this.genotype4 = gene4;
 			this.dominants = 0;
 			this.recessives = 0;
-			this.set_description = function ( array ){
-				for (var i=0; i<array.length; i++) {
-					if (array[i].genotype1 === this.genotype1 && array[i].genotype2 === this.genotype2){
-						this.description = array[i].description;
-						this.dominants += array[i].dominants;
-						this.recessives += array[i].recessives;
-					}
-				}
-			}
 
 		}
 		
+		//this method sets the number of dominant & recessive genes property, as well as the description, for each offspring created.
+		Offspring.prototype.setDescription = function ( array ){
+				for (var i=0; i<array.length; i++) {
+					if (array[i].genotype1 === this.genotype1 && array[i].genotype2 === this.genotype2 && array[i].genotype3 === this.genotype3 && array[i].genotype4 === this.genotype4){
+						this.description = array[i].description;
+						this.dominants += array[i].dominants;
+						this.recessives += array[i].recessives;
+						this.image = array[i].image;
+					}
+				}
+			}
 		
 		
 
-		//then create the 4 offspring based on the combinations of the parents' genes. Put them in an array
+		//Punnet Square version - create the 4 offspring based on the combinations of the parents' genes. Put them in an array
 		game.allOffspring = [];
-		game.allOffspring[0] = new offspring(game.mother.genotype1, game.father.genotype1, 'Offspring 1');
-		game.allOffspring[1] = new offspring(game.mother.genotype1, game.father.genotype2, 'Offspring 2');
-		game.allOffspring[2] = new offspring(game.mother.genotype2, game.father.genotype1, 'Offspring 3');
-		game.allOffspring[3] = new offspring(game.mother.genotype2, game.father.genotype2, 'Offspring 4');
+		game.allOffspring[0] = new Offspring(game.mother.genotype1, game.father.genotype1, game.mother.genotype3, game.father.genotype3, 'Offspring 1');
+		game.allOffspring[1] = new Offspring(game.mother.genotype1, game.father.genotype2, game.mother.genotype3, game.father.genotype4, 'Offspring 2');
+		game.allOffspring[2] = new Offspring(game.mother.genotype2, game.father.genotype1, game.mother.genotype4, game.father.genotype3, 'Offspring 3');
+		game.allOffspring[3] = new Offspring(game.mother.genotype2, game.father.genotype2, game.mother.genotype4, game.father.genotype4, 'Offspring 4');
 
-		game.allOffspring[0].set_description(game.level[2]);
-		game.allOffspring[1].set_description(game.level[2]);
-		game.allOffspring[2].set_description(game.level[2]);
-		game.allOffspring[3].set_description(game.level[2]);
+		//set their dominant/recessive gene count and description
+		function offspringDescriptions(){
+				
+				for(var i = 0; i<game.allOffspring.length; i++){
+					if(game.allOffspring[i].genotype3 && game.allOffspring[i].genotype4 == 'X'){
+						game.allOffspring[i].setDescription(game.level[3]);
+					}else{
+					game.allOffspring[i].setDescription(game.level[game.levelCounter]);
+				}
 
+			}
+		}
+
+		offspringDescriptions();
+
+		//move the offspring counter up by one and reset the mother/father names so they don't stay as 'new mummy' and 'new daddy' (only applicable afer the first mating) 
 		game.generation.number +=1;
 		game.mother.name = 'Mummy';
 		game.father.name = 'Daddy';
 
 
 
-		game.view.set('offspringOne', game.allOffspring[0]);
-		game.view.set('offspringTwo', game.allOffspring[1]);
-		game.view.set('offspringThree', game.allOffspring[2]);
-		game.view.set('offspringFour', game.allOffspring[3]);
 
-		
-			
 			game.view.set({
-				pending: false,
+				'offspringOne': game.allOffspring[0],
+				'offspringTwo': game.allOffspring[1],
+				'offspringThree': game.allOffspring[2],
+				'offspringFour': game.allOffspring[3],
 				selectedParent: null,
 				selectedParent2: null,
 				mother: game.mother,
@@ -190,6 +248,7 @@
 				firstInstructions: false,
 				secondInstructions: true,
 				nextMateInstructions: true,
+				submitOffspring: true,
 				mateButton: false			
 			});
 		},
@@ -217,7 +276,7 @@
 					game.mother.name = 'New Mummy';
 					game.view.set('mother', game.allOffspring[newNumber]);
 					game.view.set({
-						'instructions.message': 'hello',
+
 						selectedParent: newNumber
 
 					});
@@ -228,11 +287,10 @@
 				if(game.mother === game.allOffspring[newNumber]){
 					alert("You can't have the same offspring as both mother and father!")
 				} else {
-
-			game.father = game.allOffspring[newNumber];
-			game.father.name = 'New Daddy';
-			game.view.set('father', game.allOffspring[newNumber]);
-			game.view.set({
+					game.father = game.allOffspring[newNumber];
+					game.father.name = 'New Daddy';
+					game.view.set('father', game.allOffspring[newNumber]);
+					game.view.set({
 
 						selectedParent2: newNumber
 
@@ -274,40 +332,39 @@
 
 
 		winGame: function () {
-			// won the game
+			// offspring are correct - won the game
+			var snd = new Audio('assets/nature/correct.mp3');
+			snd.play();
 			game.view.set({
 				'dialog.message': 'You have won the game!',
 				endgame: true
 			});
 
-			game.counter = 2;
+			/*game.levelCounter ++;*/
+			game.score ++;
 		},
 
 		continue: function () {
 			// offspring aren't correct
+			var snd = new Audio('assets/nature/incorrect.mp3');
+			snd.play();
+			game.score --;
 			game.view.set({
 				'dialog.message': "Nope! Those offspring aren't right. Try Again",
-				wrong: true
+				wrong: true,
+				score: game.score
 			});
+
+
 		},
 
 		continuePlaying: function(){
 			game.view.set({
 				dialog: false
 			});
-		},
-
-		transferCards: function ( playerWon ) {
-			var winnings, hand;
-
-			winnings = [ game.playerCard, game.opponentCard ].concat( game.centrePot );
-			hand = playerWon ? game.playerHand : game.opponentHand;
-
-			hand.push.apply( hand, winnings );
-
-			// empty the center pot
-			game.centrePot.splice( 0 );
 		}
+
+
 	};
 
 	window.game = game; // for the debugging
@@ -318,6 +375,7 @@
 		var parser = new CSVParser( csv );
 		game.level[1] = parser.json();
 
+
 		// TODO don't enable user to start game until we've got the data
 	});
 
@@ -326,16 +384,31 @@
 		game.objectives = parser.json();
 	});
 
-	get ('data2.csv', function( csv ) {
+	get ('data2father.csv', function( csv ) {
 		var parser = new CSVParser ( csv );
-		game.level[2] = parser.json();
+		game.level[4] = parser.json();
 	});
+
+	get ('data2mother.csv', function( csv ) {
+		var parser = new CSVParser ( csv );
+		game.level[5] = parser.json();
+	});
+
+	// load template
+	get ('instructions.csv', function( csv ) {
+		var parser = new CSVParser ( csv );
+		game.instructions = parser.json();
+	});
+
+
 
 
 	// load template
 	get( 'template.html', function ( template ) {
 		game.render( template );
 	});
+
+
 
 
 
@@ -367,21 +440,6 @@
 		}
 
 		return array;
-	}
-	//function gives a random creature from the array
-	function randomCreature ( array ) {
-		var counter = array.length, temp, index;
-
-		// While there are elements in the array
-		while (counter--) {
-			// Pick a random index
-			index = (Math.random() * counter) | 0;
-
-			// and return that
-		
-		}
-
-		return array[index];
 	}
 
 	function preload ( url ) {
